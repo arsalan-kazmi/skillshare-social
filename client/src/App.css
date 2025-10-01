@@ -1,42 +1,56 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+html, body {
+  height: 100%;
+ overflow-x: hidden;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #fff;
+  color: #0077B5;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+/* HomePage Css */
+ .header{
+  width: 100%;
+  height: 50px;
+  border: 1px solid black;
+  display: flex
+ }
+
+.container {
+  display: grid;
+  grid-template-columns: 20% 55% 25%; /* Left | Feed | Right */
+  gap: 20px;
+  width: 100%;
+
+}
+/* Left Sidebar */
+.left-sidebar {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  min-height: 400px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Feed */
+.feed {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  min-height: 600px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* Right Sidebar */
+.right-sidebar {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  min-height: 400px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
