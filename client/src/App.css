@@ -18,32 +18,40 @@ html, body {
   width: 100%;
   height: 50px;
   border: 1px solid black;
-  display: flex
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
  }
 
 .container {
   display: grid;
-  grid-template-columns: 20% 55% 25%; /* Left | Feed | Right */
+  grid-template-columns: 200px 1fr 200px; /* Left | Feed | Right */
   gap: 20px;
   width: 100%;
-
+  height: calc(100vh - 50px); /* minus header height */
 }
+
 /* Left Sidebar */
 .left-sidebar {
-  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* push profile button to bottom */
   padding: 15px;
   border-radius: 10px;
-  min-height: 400px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background: #fff;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+  height: 100%; /* full container height */
 }
 
-/* Feed */
+/* Feed - scrollable if content overflows */
 .feed {
   background: #fff;
   padding: 15px;
   border-radius: 10px;
-  min-height: 600px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  height: 100%;
+  overflow-y: auto; /* scroll only feed */
 }
 
 /* Right Sidebar */
@@ -51,6 +59,85 @@ html, body {
   background: #fff;
   padding: 15px;
   border-radius: 10px;
-  min-height: 400px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  height: 100%;
+}
+
+
+
+.logobox{
+  width:200px;
+  height:100%;
+  border: 1px solid sienna ;
+  font-size: larger;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Sidebar container */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Push profile button to bottom */
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  min-height: 100vh;
+  width: 200px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+}
+
+/* Navigation links container */
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* spacing between nav items */
+}
+
+/* Individual nav item */
+.nav-links .div-1 a {
+  text-decoration: none;
+  color: #0077B5; /* LinkedIn-style blue */
+  font-weight: 500;
+  padding: 10px 15px;
+  display: block;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-links .div-1 a:hover {
+  background-color: gainsboro;
+  transform: scale(1.05);
+}
+
+.nav-links .div-1 a.active {
+  background-color: #0077B5;
+  color: white;
+}
+
+/* Profile button container */
+.profile-button {
+  margin-top: 20px; /* gap from nav links */
+}
+
+/* Profile button itself */
+.profile-button a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #0077B5;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.profile-button a:hover {
+  background-color: #005f8d;
+  transform: scale(1.1);
 }
