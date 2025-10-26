@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Avatar, Typography, Button, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import CompleteProfile from "./CompleteProfile";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -95,6 +96,10 @@ const Profile = () => {
         <div className="project-showcase">
           Project 1 <p className="project-details">React Node</p>
         </div>
+      </div>
+
+      <div>
+        <CompleteProfile />
       </div>
     </div>
   );
