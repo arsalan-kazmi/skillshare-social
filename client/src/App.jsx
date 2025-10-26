@@ -21,10 +21,14 @@ import AlumniProfile from "./pages/AlumniConnect/AlumniProfile";
 // import AlumniProfile from "./pages/AlumniConnect/AlumniProfile";
 import AboutUs from "./pages/AlumniConnect/AboutUs";
 import AlumniProtectedRoutes from "./components/AlumniComponents/AlumniProtectedRoutes";
+import Dashboard from "./pages/AlumniConnect/Dashboard";
+import { useAuth } from "./context/authContext";
 function App() {
-  const isAuthenticated = !!localStorage.getItem("token");
+  // const isAuthenticated = !!localStorage.getItem("authToken");
+  const {isAuthenticated}=useAuth()
+
   const isAlumniAuthenticated=!!localStorage.getItem("alumni-token");
-   console.log(isAlumniAuthenticated)
+  //  console.log(isAlumniAuthenticated)
   
   const router = createBrowserRouter([
     // 🔓 Public route (login only)
@@ -104,7 +108,14 @@ function App() {
     />
   ),
   children: [
-   
+      {
+      index: true,
+      element: <Navigate to="dashboard" replace />,
+    },
+   {
+    path:"dashboard",
+    element:<Dashboard/>
+   },
     {
       path: "profile",
       element: <AlumniProfile />,
