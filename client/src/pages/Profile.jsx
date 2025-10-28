@@ -20,28 +20,24 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const { getUserProfile } = useAuth();
   // Assume token is stored in localStorage after login
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("authToken");
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const res = await getUserProfile();
-        if (!res.ok) {
-          throw new Error("Failed to fetch user profile");
-        }
-        const data = await res.json();
-        console.log(data);
+        const data = await getUserProfile(); // data is already JSON here
+        // console.log(data);
+        // console.log(token);
+        console.log("Profile Data", data);
 
-        setUser(data.user);
+        setUser(data);
       } catch (error) {
-        console.error(error);
+        console.error(error.message);
       } finally {
         setLoading(false);
       }
     };
-
-    if (token) fetchUserProfile();
-    else setLoading(false);
+    fetchUserProfile();
   }, [token]);
 
   if (loading) {
