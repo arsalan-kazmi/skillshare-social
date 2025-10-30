@@ -314,9 +314,5 @@ export default function CompleteProfile() {
     }
   };
 
-  return (
-    <div>CompleteProfile</div>
-  )
+  return <div>CompleteProfile</div>;
 }
-
-export default CompleteProfile
