@@ -8,17 +8,18 @@
 html,
 body {
   height: 100%;
-    overflow-x:hidden ;
+  overflow-x: hidden;
   overflow-y: auto;
   font-family: "poppins", Arial, sans-serif;
   background-color: #f5f5f5;
   color: #0077B5;
-  scrollbar-width:thin;
-            
+  scrollbar-width: thin;
+
 }
-body::-webkit-scrollbar-thumb{
-    border: none;
-    background-clip: padding-box;
+
+body::-webkit-scrollbar-thumb {
+  border: none;
+  background-clip: padding-box;
 }
 
 /* body:hover {
@@ -31,20 +32,22 @@ body::-webkit-scrollbar-thumb{
 
   height: auto;
   border: 1px solid;
- 
+
   /* padding: 10px; */
 }
-.header-body{
-    top: 0;
-    position: sticky;
-    z-index: 1000;
+
+.header-body {
+  top: 0;
+  position: sticky;
+  z-index: 1000;
 }
+
 .alumni-header {
   width: 100%;
   height: 100px;
- background-color: white;
+  background-color: white;
   display: flex;
- 
+
 
 
 }
@@ -136,129 +139,267 @@ body::-webkit-scrollbar-thumb{
   cursor: pointer;
 }
 
-.alumni-body {
-  padding: 40px;
-  /* inner spacing */
-  margin-top: 10px;
-  /* spacing below header/nav */
-  min-height: calc(100vh - 120px);
-  /* full height minus header */
-  background-color: #ffffff;
-  
-
- 
-}
-.dashboard_container{
-     margin-top: 10px;
-  /* spacing below header/nav */
-  min-height: calc(100vh - 120px);
-  /* full height minus header */
-  background-color: #ffffff;
-  /* optional background */
+/* === Wrapper === */
+.profile-wrapper {
   display: flex;
-  flex-direction:row;
-  /* stack child components vertically */
-  gap: 25px;
-  /* space between child components */
+  align-items: flex-start;
+  background: #fafafa;
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: #333;
+  overflow: visible;
+  /* important: allow sidebar to show */
 }
 
-.dashboard_container .profile {
-  width: 290px;
-  height: 230px;
-  border: 1px solid gray;
-  border-radius: 15px;
-  padding:40px 20px;
-  /* Background settings */
-  background-color:#9c5b2f; /* better opacity control */
-  background-image: url('../../assets/378_1466079494_1.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-blend-mode: overlay; /* ✅ blends color + image beautifully */
-}
-.profile{
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
-}
-.profile p{
-    font-size: 13px;
+.sidebar {
+  position: fixed;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background: white;
+  border-right: 2px solid #eee;
+  padding: 30px 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+  z-index: 1000;
+  /* make sure it’s always visible on top */
 }
 
-.profile button:hover{
-    cursor: pointer;
-     transition: all 0.3s ease;
-     background-color: whitesmoke;
+.sidebar-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #f89807;
+  margin-bottom: 20px;
+  text-align: center;
 }
-.alumni-directory{
-    width: 290px;
-  height: 230px;
-  border: 1px solid gray;
-  border-radius: 15px;
-  padding:40px 20px;
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-item {
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  color: #444;
+  border: 1px solid transparent;
+}
+
+.sidebar-item:hover {
+  background-color: #fff3e0;
+  border: 1px solid #f89807;
+  color: #f89807;
+}
+
+.sidebar-item.active {
+  background-color: #f89807;
   color: white;
-  font-family: 'Courier New', Courier, monospace;
-  background-color:#494545; /* better opacity control */
-  background-image: url('../../assets/post1328_t1513785733_5iHoMR6DRG.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-blend-mode: overlay;
-}
-.alumni-directory p{
-    font-size: 13px;
-}
-.alumni-city{
-  width: 290px;
-  height: 230px;
-  border: 1px solid gray;
-  border-radius: 15px;
-  padding:40px 20px;
-  color: white;
-  font-family: 'Courier New', Courier, monospace;
-  background-color:#9c5b2f; /* better opacity control */
-  background-image: url('../../assets/post1372_t1515410383_ALaMbKYyPy.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-blend-mode: overlay;
-}
-.alumni-city p{
-    font-size: 13px;
-}
-.alumni-batchmates{
-  width: 290px;
-  height: 230px;
-  border: 1px solid gray;
-  border-radius: 15px;
-  padding:40px 20px;
-  color: white;
-  font-family: 'Courier New', Courier, monospace;
-  background-color:#454444; /* better opacity control */
-  background-image: url('../../assets/1590474494227.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-blend-mode: overlay;
-}
-.alumni-batchmates p{
-    font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(248, 152, 7, 0.3);
 }
 
-.dashboard-button{
-    width: 100px;
-    height: 35px;
-    background-color: white;
-    color:#ee9917;
-    border: none;
-    margin-top: 15px;
-    border-radius: 5px;
-     /* position: absolute;
-     bottom: 0; */
+/* === Form Area === */
+.form-area {
+  flex: 1;
+  margin-left: 260px;
+  /* same as sidebar width */
+  height: 100vh;
+  overflow-y: auto;
+  padding: 40px 60px;
+  background: white;
+  border-radius: 12px 0 0 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
 }
 
-.dashboard-button:hover{
-    cursor: pointer;
-     transition: all 0.3s ease;
-     background-color: whitesmoke;
-    
+
+.form-title {
+  color: #f89807;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  border-left: 6px solid #f89807;
+  padding-left: 10px;
+}
+
+/* === Grid Layout === */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 10px 14px;
+  border: 1.8px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #f89807;
+  box-shadow: 0 0 0 3px rgba(248, 152, 7, 0.15);
+}
+
+/* === Textarea === */
+textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* === Buttons === */
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.save-btn,
+.cancel-btn,
+.add-skill-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+/* Save Button (Primary) */
+.save-btn {
+  background-color: #f89807;
+  color: white;
+  box-shadow: 0 4px 10px rgba(248, 152, 7, 0.3);
+}
+
+.save-btn:hover {
+  background-color: #e08706;
+}
+
+/* Cancel Button */
+.cancel-btn {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #ddd;
+}
+
+/* Add Skill Button */
+.add-skill-btn {
+  background-color: #f89807;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 15px;
+  box-shadow: 0 2px 8px rgba(248, 152, 7, 0.3);
+}
+
+.add-skill-btn:hover {
+  background-color: #e08706;
+}
+
+.skills-list {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-item {
+  background: #fff8f0;
+  border: 1.5px solid #f89807;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-weight: 500;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 6px rgba(248, 152, 7, 0.15);
+}
+
+.skill-item em {
+  color: #f89807;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.remove-skill {
+  background: transparent;
+  border: none;
+  color: #f89807;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.remove-skill:hover {
+  color: #d57c05;
+  transform: scale(1.2);
+}
+
+.edit-skill,
+.save-skill,
+.cancel-edit {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #f89807;
+}
+
+.save-skill:hover {
+  color: #e88a05;
+}
+
+.cancel-edit {
+  color: #d11a2a;
+}
+
+.cancel-edit:hover {
+  color: #a10f1d;
+}
+
+
+
+/* === Responsive === */
+@media (max-width: 900px) {
+  .profile-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 2px solid #eee;
+  }
+
+  .form-area {
+    margin: 20px;
+    padding: 30px;
+  }
 }
