@@ -6,15 +6,16 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const [isSignup, setIsSignup] = useState(false);
-  const { user,isAuthenticated,register,login,} = useAuth();
+  const { register, login } = useAuth();
   const navigate = useNavigate();
 
-  // Separate states for login and register forms
+  // Login state
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
+  // Register state
   const [registerData, setRegisterData] = useState({
     fullName: "",
     email: "",
@@ -27,61 +28,64 @@ const Login = () => {
 
   const toggleMode = () => {
     setError("");
-    setIsSignup((prev) => !prev);
+    setIsSignup(prev => !prev);
   };
 
-  const handleLoginChange = (e) => {
-    setLoginData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleLoginChange = e => {
+    setLoginData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     setError("");
   };
 
-  const handleRegisterChange = (e) => {
-    setRegisterData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleRegisterChange = e => {
+    setRegisterData(prev => ({ ...prev, [e.target.name]: e.target.value }));
     setError("");
   };
 
-  const handleSubmit = async (e) => {
+  // HANDLE LOGIN + REGISTER
+  const handleSubmit = async e => {
     e.preventDefault();
     setError("");
 
+    // REGISTER MODE
     if (isSignup) {
       if (registerData.password !== registerData.confirmPassword) {
         setError("Passwords do not match");
-         toast("Passwords Does Not Match");
+        toast.error("Passwords do not match");
         return;
       }
+
       setLoading(true);
       const { success, error } = await register(registerData);
       setLoading(false);
-      console.log(success);
-      
+
       if (success) {
-        toast.success("Registration Successfull.",{
-          duration:1000,
-          position:"top-center"
-        })
+        toast.success("Registration successful!");
         navigate("/");
       } else {
         setError(error || "Registration failed");
-         toast("Registration Failed.");
+        toast.error("Registration failed");
       }
+
+      return;
+    }
+
+    // LOGIN MODE
+    setLoading(true);
+    const result = await login(loginData);
+    setLoading(false);
+
+    console.log("LOGIN RESULT:", result);
+
+    if (result.success) {
+      // 🔥🔥 SAVE TOKEN — FIXES CHAT AUTH PROBLEM
+      localStorage.setItem("token", result.token);
+      console.log("TOKEN STORED:", result.token);
+
+      toast.success("Login successful!");
+      navigate("/");
     } else {
-      setLoading(true);
-      const result = await login(loginData);
-      setLoading(false);
-      
-      console.log(result.success);
-      toast.success("Login  Successfull.",{
-          duration:1000,
-          position:"top-center"
-        })
-      
-      if (result.success) {
-        navigate("/");
-      } else {
-        setError(result.error || "Login failed");
-        toast("Login Failed.")
-      }
+      setError(result.error || "Login failed");
+      toast.error("Login failed");
     }
   };
 
@@ -182,13 +186,24 @@ const Login = () => {
           sx={{ mt: 3, mb: 2 }}
           disabled={loading}
         >
-          {loading ? (isSignup ? "Signing up..." : "Logging in...") : isSignup ? "Sign Up" : "Login"}
+          {loading
+            ? isSignup
+              ? "Signing up..."
+              : "Logging in..."
+            : isSignup
+            ? "Sign Up"
+            : "Login"}
         </Button>
       </form>
 
       <Typography variant="body2" align="center">
         {isSignup ? "Already have an account?" : "Don't have an account?"}{" "}
-        <Link component="button" variant="body2" onClick={toggleMode} sx={{ cursor: "pointer" }}>
+        <Link
+          component="button"
+          variant="body2"
+          onClick={toggleMode}
+          sx={{ cursor: "pointer" }}
+        >
           {isSignup ? "Login" : "Sign Up"}
         </Link>
       </Typography>

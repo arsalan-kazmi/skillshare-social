@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Feed from "./pages/Feed";
 import Notifications from "./pages/Notifications";
@@ -7,7 +11,7 @@ import Projects from "./pages/Projects";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login"; // public
 import ProtectedRoute from "./components/ProtectedRoute";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 import UserChat from "./pages/UserChat";
 import CompleteProfile from "./pages/CompleteProfile";
 import Settings from "./pages/Settings";
@@ -26,11 +30,11 @@ import { useAuth } from "./context/AuthContext";
 
 function App() {
   // const isAuthenticated = !!localStorage.getItem("authToken");
-  const {isAuthenticated}=useAuth()
+  const { isAuthenticated } = useAuth();
 
-  const isAlumniAuthenticated=!!localStorage.getItem("alumni-token");
+  const isAlumniAuthenticated = !!localStorage.getItem("alumni-token");
   //  console.log(isAlumniAuthenticated)
-  
+
   const router = createBrowserRouter([
     // 🔓 Public route (login only)
     {
@@ -39,7 +43,7 @@ function App() {
     },
     {
       path: "/alumni-auth",
-      element: <AlmuniAuth />
+      element: <AlmuniAuth />,
     },
 
     // 🔒 Entire HomePage (and its nested routes) protected
@@ -52,10 +56,10 @@ function App() {
         />
       ),
       children: [
-         {
-      index: true,
-      element: <Navigate to="/feed" replace />,
-    },
+        {
+          index: true,
+          element: <Navigate to="/feed" replace />,
+        },
         {
           path: "feed",
           element: <Feed />,
@@ -76,76 +80,78 @@ function App() {
           path: "profile",
           element: <Profile />,
         },
-        {
-          path: "chat",
-          element:<UserChat/>,
-        },
+
         // {
         //   path:"complete-profile",
         //   element:<CompleteProfile/>
         // },
-         {
-          path:"settings",
-          element:<Settings/>
+        {
+          path: "settings",
+          element: <Settings />,
         },
         {
-          path:"explore",
-          element:<Explore/>
+          path: "explore",
+          element: <Explore />,
         },
-         {
-          path:"mynetwork",
-          element:<MyNetwork/>
+        {
+          path: "mynetwork",
+          element: <MyNetwork />,
         },
-         
       ],
-      
     },
     {
-      path:"/complete-profile",
-      element:(
-        <AlumniProtectedRoutes element={<CompleteProfile/>}
-        isAlumniAuthenticated={isAlumniAuthenticated}/>
-      )
+      path: "/complete-profile",
+      element: (
+        <AlumniProtectedRoutes
+          element={<CompleteProfile />}
+          isAlumniAuthenticated={isAlumniAuthenticated}
+        />
+      ),
     },
     {
-  path: "/alumniconnect",
-  element: (
-    <AlumniProtectedRoutes
-      element={<AlumniConnect />}
-      isAlumniAuthenticated={isAlumniAuthenticated}
-    />
-  ),
-  children: [
-      {
-      index: true,
-      element: <Navigate to="dashboard" replace />,
-    },
-   {
-    path:"dashboard",
-    element:<Dashboard/>
-   },
-    {
-      path: "profile",
-      element: <AlumniProfile />,
+      path: "chat",
+      element: <UserChat />,
     },
     {
-      path: "aboutus",
-      element: <AboutUs/>,
+      path: "/alumniconnect",
+      element: (
+        <AlumniProtectedRoutes
+          element={<AlumniConnect />}
+          isAlumniAuthenticated={isAlumniAuthenticated}
+        />
+      ),
+      children: [
+        {
+          index: true,
+          element: <Navigate to="dashboard" replace />,
+        },
+        {
+          path: "dashboard",
+          element: <Dashboard />,
+        },
+        {
+          path: "profile",
+          element: <AlumniProfile />,
+        },
+        {
+          path: "aboutus",
+          element: <AboutUs />,
+        },
+
+        {
+          path: "alumni-directory",
+          element: <AlumniDirectory />,
+        },
+      ],
     },
-    
-    {
-      path:"alumni-directory",
-      element:<AlumniDirectory/>
-    },
-  ],
-}
-    
   ]);
 
-  return <>
-  <RouterProvider router={router} />
-  <Toaster/>
-  </>;
+  return (
+    <>
+      <RouterProvider router={router} />
+      <Toaster />
+    </>
+  );
 }
 
 export default App;

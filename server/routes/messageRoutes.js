@@ -1,0 +1,13 @@
+const express = require("express");
+const router = express.Router();
+const auth = require("../middleware/authMiddleware.js");
+
+const {
+  sendMessage,
+  getMessages,
+} = require("../controllers/messageController");
+
+router.post("/", auth, sendMessage);
+router.get("/:id", auth, getMessages);
+
+module.exports = router;
