@@ -51,7 +51,8 @@ const UserChat = () => {
 
     const loadMessages = async () => {
       try {
-        const res = await api.get(`/messages/${selectedChat._id}`);
+        const res = await api.get(`/api/messages/${selectedChat._id}`);
+
         setChatMessages(res.data);
       } catch (err) {
         console.log("Message load error:", err);
@@ -71,7 +72,7 @@ const UserChat = () => {
     if (!input.trim() || !selectedChat) return;
 
     try {
-      const res = await api.post("/messages", {
+      const res = await api.post("/api/messages", {
         conversationId: selectedChat._id,
         text: input,
       });

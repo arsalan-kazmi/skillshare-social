@@ -109,7 +109,7 @@ function App() {
       ),
     },
     {
-      path: "chat",
+      path: "/chat",
       element: <UserChat />,
     },
     {

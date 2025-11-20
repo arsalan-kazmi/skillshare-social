@@ -78,8 +78,8 @@ const Login = () => {
 
     if (result.success) {
       // 🔥🔥 SAVE TOKEN — FIXES CHAT AUTH PROBLEM
-      localStorage.setItem("token", result.token);
-      console.log("TOKEN STORED:", result.token);
+      localStorage.setItem("token", result.response.user.token);
+      console.log("TOKEN STORED:", result.response.user.token);
 
       toast.success("Login successful!");
       navigate("/");

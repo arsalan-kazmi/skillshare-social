@@ -8,10 +8,15 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
     const storedUser = authService.getUser();
-    if (storedUser) {
+
+    if (token && storedUser) {
       setUser(storedUser);
       setIsAuthenticated(true);
+    } else {
+      setUser(null);
+      setIsAuthenticated(false);
     }
   }, []);
 
